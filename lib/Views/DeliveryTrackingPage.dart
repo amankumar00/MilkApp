@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class DeliveryTrackingPage extends StatefulWidget {
-  static String id = '/DeliveryTRackingPage';
+  static String id = '/DeliveryTrackingPage';
   @override
   _DeliveryTrackingPageState createState() => _DeliveryTrackingPageState();
 }
