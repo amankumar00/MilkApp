@@ -22,6 +22,16 @@ flutter:
     - family: Gloria
       fonts:
         - asset: fonts/GloriaHallelujah-Regular.ttf
+    - family: Langer
+      fonts:
+        - asset: fonts/Langar-Regular.ttf
+    - family: Russo
+      fonts:
+        - asset: fonts/RussoOne-Regular.ttf
+    - family: Alfa
+      fonts:
+        - asset: fonts/AlfaSlabOne-Regular.ttf
+
   assets:
     - images/
 

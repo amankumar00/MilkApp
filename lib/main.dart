@@ -24,12 +24,11 @@ class MilkApp extends StatelessWidget {
       },
       initialRoute: '/',
       theme: ThemeData(
-        scaffoldBackgroundColor: Colors.blueGrey,
         appBarTheme: AppBarTheme(
           color: Color(0xFF2766A9),
           textTheme: TextTheme(
             headline6: TextStyle(
-              fontFamily: 'Gloria',
+              fontFamily: 'Langer',
               fontSize: 25,
             ),
           ),

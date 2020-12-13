@@ -46,31 +46,63 @@ class _HomePageState extends State<HomePage> {
           'MilkMan',
         ),
       ),
-      body: Container(
-        child: GridView.count(
-          childAspectRatio: 0.625,
-          crossAxisSpacing: 10,
-          mainAxisSpacing: 10,
-          padding: EdgeInsets.all(10),
-          crossAxisCount: 2,
-          children: <Widget>[
-            GridViewItems(
-              imagePath: 'images/AmulMilk.png',
+      body: Column(
+        children: [
+          SearchTextField(),
+          Expanded(
+            child: Container(
+              child: GridView.count(
+                childAspectRatio: 0.625,
+                crossAxisSpacing: 10,
+                mainAxisSpacing: 10,
+                padding: EdgeInsets.all(10),
+                crossAxisCount: 2,
+                children: <Widget>[
+                  GridViewItems(
+                    imagePath: 'images/AmulMilk.png',
+                  ),
+                  GridViewItems(
+                    imagePath: 'images/AmulMilk.png',
+                  ),
+                  GridViewItems(
+                    imagePath: 'images/AmulMilk.png',
+                  ),
+                  GridViewItems(
+                    imagePath: 'images/AmulMilk.png',
+                  ),
+                  GridViewItems(
+                    imagePath: 'images/AmulMilk.png',
+                  ),
+                ],
+              ),
             ),
-            GridViewItems(
-              imagePath: 'images/AmulMilk.png',
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class SearchTextField extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: 8, horizontal: 10),
+      child: TextField(
+        decoration: InputDecoration(
+            hintText: 'Search for Brands, Volume, Type of Milk Etc...',
+            filled: true,
+            fillColor: Colors.white70,
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.all(
+                Radius.circular(30.0),
+              ),
             ),
-            GridViewItems(
-              imagePath: 'images/AmulMilk.png',
-            ),
-            GridViewItems(
-              imagePath: 'images/AmulMilk.png',
-            ),
-            GridViewItems(
-              imagePath: 'images/AmulMilk.png',
-            ),
-          ],
-        ),
+            focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.all(
+              Radius.circular(30.0),
+            ))),
+        onChanged: (value) {},
       ),
     );
   }
@@ -89,11 +121,60 @@ class GridViewItems extends StatelessWidget {
         color: Colors.white,
       ),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          Image.asset(
-            imagePath,
-            height: 120,
-            width: 120,
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Center(
+              child: Image.asset(
+                imagePath,
+                height: 120,
+                width: 120,
+              ),
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16),
+            child: Expanded(
+              child: Text(
+                'Amul',
+                style: TextStyle(fontFamily: 'Russo'),
+              ),
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16),
+            child: Expanded(child: Text('1L')),
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16),
+            child: Expanded(
+              child: Text(
+                'Pasteurised',
+                style: TextStyle(
+                  fontFamily: 'Gloria',
+                ),
+              ),
+            ),
+          ),
+          Expanded(
+            child: Align(
+              alignment: Alignment.bottomLeft,
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16),
+                child: Expanded(
+                  child: Text(
+                    '₹70',
+                    style: TextStyle(
+                      fontFamily: 'Alfa',
+                      color: Colors.green,
+                      fontSize: 25,
+                    ),
+                  ),
+                ),
+              ),
+            ),
           ),
         ],
       ),
