@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'SignUpPage.dart';
+import 'Widget/bezierContainer.dart';
 class LoginPage extends StatefulWidget {
   static String id = '/';
   @override
@@ -14,12 +15,15 @@ class _LoginPageState extends State<LoginPage> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text(
-            title,
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+          Padding(
+            padding: const EdgeInsets.all(6.0),
+            child: Text(
+              title,
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+            ),
           ),
           SizedBox(
-            height: 10,
+            height: 05,
           ),
           TextField(
               obscureText: isPassword,
@@ -103,17 +107,17 @@ class _LoginPageState extends State<LoginPage> {
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Image(image: AssetImage("images/google_logo.png"), height: 35.0),
             Padding(
               padding: const EdgeInsets.only(left: 10),
               child: Text(
-                'Login with Google',
+                'Login with ',
                 style: TextStyle(
                   fontSize: 20,
                   color: Colors.grey,
                 ),
               ),
-            )
+            ),
+            Image(image: AssetImage("images/google.png"), height: 35.0),
           ],
         ),
       ),
@@ -134,17 +138,17 @@ class _LoginPageState extends State<LoginPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              'Don\'t have an account ?',
+              'Don\'t have an account?',
               style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
             ),
             SizedBox(
-              width: 10,
+              width: 5,
             ),
             Text(
               'Sign Up',
               style: TextStyle(
                   color: Color(0xFF2766A9),
-                  fontSize: 13,
+                  fontSize: 15,
                   fontWeight: FontWeight.w600),
             ),
           ],
@@ -158,7 +162,7 @@ class _LoginPageState extends State<LoginPage> {
       textAlign: TextAlign.center,
       text: TextSpan(
         text: 'MilkApp',
-        style: TextStyle(color: Color(0xFF2766A9), fontSize: 40,fontFamily: 'Gloria',fontWeight: FontWeight.w600),
+        style: TextStyle(color: Color(0xFF2766c1), fontSize: 40,fontFamily: 'Langer',fontWeight: FontWeight.w600),
       ),
     );
   }
@@ -180,29 +184,33 @@ class _LoginPageState extends State<LoginPage> {
           height: height,
           child: Stack(
             children: <Widget>[
+              Positioned(
+                  top: -height * .15,
+                  right: -MediaQuery.of(context).size.width * .4,
+                  child: BezierContainer()),
               Container(
-                padding: EdgeInsets.symmetric(horizontal: 20),
+                padding: EdgeInsets.symmetric(horizontal: 35),
                 child: SingleChildScrollView(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      SizedBox(height: height * .2),
+                      SizedBox(height: height * .19),
                       _title(),
-                      SizedBox(height: 50),
+                      SizedBox(height: 35),
                       _emailPasswordWidget(),
                       SizedBox(height: 20),
                       _submitButton(),
                       Container(
                         padding: EdgeInsets.symmetric(vertical: 10),
                         alignment: Alignment.centerRight,
-                        child: Text('Forgot Password ?',
+                        child: Text('Forgot Password?',
                             style: TextStyle(
                                 fontSize: 14, fontWeight: FontWeight.w500)),
                       ),
                       _divider(),
                       _googleLogin(),
-                      SizedBox(height: height * .055),
+                      SizedBox(height: height * .01),
                       _createAccountLabel(),
                     ],
                   ),

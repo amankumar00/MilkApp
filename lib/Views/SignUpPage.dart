@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'LoginPage.dart';
+import 'Widget/bezierContainer.dart';
 class SignUpPage extends StatefulWidget {
   static String id = '/SignUpPage';
   @override
@@ -14,12 +15,15 @@ class _SignUpPageState extends State<SignUpPage> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text(
-            title,
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+          Padding(
+            padding: const EdgeInsets.all(6.0),
+            child: Text(
+              title,
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+            ),
           ),
           SizedBox(
-            height: 10,
+            height: 05,
           ),
           TextField(
               obscureText: isPassword,
@@ -51,7 +55,7 @@ class _SignUpPageState extends State<SignUpPage> {
               end: Alignment.centerRight,
               colors: [Color(0xFF2766a9), Color(0xFF2766ff)])),
       child: Text(
-        'SignUp Now',
+        'Sign Up Now',
         style: TextStyle(fontSize: 20, color: Colors.white),
       ),
     );
@@ -71,17 +75,17 @@ class _SignUpPageState extends State<SignUpPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              'Already have an account ?',
+              'Already have an account?',
               style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
             ),
             SizedBox(
-              width: 10,
+              width: 5,
             ),
             Text(
               'Login',
               style: TextStyle(
                   color: Color(0xFF276690),
-                  fontSize: 13,
+                  fontSize: 15,
                   fontWeight: FontWeight.w600),
             ),
           ],
@@ -95,7 +99,7 @@ class _SignUpPageState extends State<SignUpPage> {
       textAlign: TextAlign.center,
       text: TextSpan(
         text: 'MilkApp',
-        style: TextStyle(color: Color(0xFF2766A9), fontSize: 40,fontFamily: 'Gloria',fontWeight: FontWeight.w600),
+        style: TextStyle(color: Color(0xFF2766A9), fontSize: 40,fontFamily: 'Langer',fontWeight: FontWeight.w600),
       ),
     );
   }
@@ -110,6 +114,36 @@ class _SignUpPageState extends State<SignUpPage> {
     );
   }
 
+  Widget _googleSign() {
+    return OutlineButton(
+      splashColor: Color(0xFF2766A9),
+      onPressed: () {},
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
+      highlightElevation: 0,
+      borderSide: BorderSide(color: Colors.grey),
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.only(left: 10),
+              child: Text(
+                'Sign Up with ',
+                style: TextStyle(
+                  fontSize: 20,
+                  color: Colors.grey,
+                ),
+              ),
+            ),
+            Image(image: AssetImage("images/google.png"), height: 35.0),
+          ],
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
@@ -118,24 +152,29 @@ class _SignUpPageState extends State<SignUpPage> {
         height: height,
         child: Stack(
           children: <Widget>[
+            Positioned(
+                top: -height * .18,
+                right: -MediaQuery.of(context).size.width * .4,
+                child: BezierContainer()),
             Container(
-              padding: EdgeInsets.symmetric(horizontal: 20),
+              padding: EdgeInsets.symmetric(horizontal: 35),
               child: SingleChildScrollView(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    SizedBox(height: height * .2),
+                    SizedBox(height: height * .25),
                     _title(),
                     SizedBox(
-                      height: 50,
+                      height: 15,
                     ),
                     _emailPasswordWidget(),
                     SizedBox(
-                      height: 20,
+                      height: 15,
                     ),
                     _submitButton(),
-                    SizedBox(height: height * .14),
+                    SizedBox(height: height * .04),
+                    _googleSign(),
                     _loginAccountLabel(),
                   ],
                 ),
