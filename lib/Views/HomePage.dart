@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -40,13 +41,62 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       appBar: AppBar(
-        title: Center(
-          child: Text(
-            'MilkMan',
-          ),
+        centerTitle: true,
+        title: Text(
+          'MilkMan',
         ),
       ),
-      body: Container(),
+      body: Container(
+        child: GridView.count(
+          childAspectRatio: 0.625,
+          crossAxisSpacing: 10,
+          mainAxisSpacing: 10,
+          padding: EdgeInsets.all(10),
+          crossAxisCount: 2,
+          children: <Widget>[
+            GridViewItems(
+              imagePath: 'images/AmulMilk.png',
+            ),
+            GridViewItems(
+              imagePath: 'images/AmulMilk.png',
+            ),
+            GridViewItems(
+              imagePath: 'images/AmulMilk.png',
+            ),
+            GridViewItems(
+              imagePath: 'images/AmulMilk.png',
+            ),
+            GridViewItems(
+              imagePath: 'images/AmulMilk.png',
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class GridViewItems extends StatelessWidget {
+  GridViewItems({this.imagePath});
+  final String imagePath;
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.all(
+          Radius.circular(10),
+        ),
+        color: Colors.white,
+      ),
+      child: Column(
+        children: [
+          Image.asset(
+            imagePath,
+            height: 120,
+            width: 120,
+          ),
+        ],
+      ),
     );
   }
 }
