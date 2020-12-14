@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'SignUpPage.dart';
 import 'Widget/bezierContainer.dart';
 
-//final login page
+//final login page2
 class LoginPage extends StatefulWidget {
   static String id = '/';
   @override
