@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'LoginPage.dart';
-import 'Widget/bezierContainer.dart';
-//final signup page 2
+//final signup page 2;
+//color code 0xFF2f7fcd;
 class SignUpPage extends StatefulWidget {
   static String id = '/SignUpPage';
   @override
@@ -10,6 +10,7 @@ class SignUpPage extends StatefulWidget {
 
 class _SignUpPageState extends State<SignUpPage> {
   Widget _entryField(String title, {bool isPassword = false}) {
+    TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
     return Container(
       margin: EdgeInsets.symmetric(vertical: 10),
       child: Column(
@@ -26,11 +27,13 @@ class _SignUpPageState extends State<SignUpPage> {
             height: 05,
           ),
           TextField(
-              obscureText: isPassword,
-              decoration: InputDecoration(
-                  border: InputBorder.none,
-                  fillColor: Color(0xfff3f3f4),
-                  filled: true))
+            obscureText: isPassword,
+            style: style,
+            decoration: InputDecoration(
+                contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+                border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(40))),
+          )
         ],
       ),
     );
@@ -42,7 +45,7 @@ class _SignUpPageState extends State<SignUpPage> {
       padding: EdgeInsets.symmetric(vertical: 15),
       alignment: Alignment.center,
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(5)),
+          borderRadius: BorderRadius.all(Radius.circular(50)),
           boxShadow: <BoxShadow>[
             BoxShadow(
                 color: Colors.grey.shade200,
@@ -53,7 +56,7 @@ class _SignUpPageState extends State<SignUpPage> {
           gradient: LinearGradient(
               begin: Alignment.centerLeft,
               end: Alignment.centerRight,
-              colors: [Color(0xFF2766a9), Color(0xFF2766ff)])),
+              colors: [Color(0xFF2f7fcd), Color(0xFF47a6f7)])),
       child: Text(
         'Sign Up Now',
         style: TextStyle(fontSize: 20, color: Colors.white),
@@ -84,7 +87,7 @@ class _SignUpPageState extends State<SignUpPage> {
             Text(
               'Login',
               style: TextStyle(
-                  color: Color(0xFF276690),
+                  color: Color(0xFF2f7fcd),
                   fontSize: 15,
                   fontWeight: FontWeight.w600),
             ),
@@ -100,7 +103,7 @@ class _SignUpPageState extends State<SignUpPage> {
       text: TextSpan(
         text: 'MilkApp',
         style: TextStyle(
-            color: Color(0xFF2766A9),
+            color: Color(0xFF2f7fcd),
             fontSize: 40,
             fontFamily: 'Langer',
             fontWeight: FontWeight.w600),
@@ -120,7 +123,7 @@ class _SignUpPageState extends State<SignUpPage> {
 
   Widget _googleSign() {
     return OutlineButton(
-      splashColor: Color(0xFF2766A9),
+      splashColor: Color(0xFF2f7fcd),
       onPressed: () {},
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
       highlightElevation: 0,
@@ -156,10 +159,6 @@ class _SignUpPageState extends State<SignUpPage> {
         height: height,
         child: Stack(
           children: <Widget>[
-            Positioned(
-                top: -height * .18,
-                right: -MediaQuery.of(context).size.width * .4,
-                child: BezierContainer()),
             Container(
               padding: EdgeInsets.symmetric(horizontal: 35),
               child: SingleChildScrollView(
@@ -168,10 +167,8 @@ class _SignUpPageState extends State<SignUpPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     SizedBox(height: height * .25),
+                    Image(image: AssetImage("images/logo.png"), height: 80.0),
                     _title(),
-                    SizedBox(
-                      height: 15,
-                    ),
                     _emailPasswordWidget(),
                     SizedBox(
                       height: 15,

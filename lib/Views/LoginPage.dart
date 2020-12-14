@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'SignUpPage.dart';
-import 'Widget/bezierContainer.dart';
 
 //final login page2
 class LoginPage extends StatefulWidget {
@@ -11,6 +10,7 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   Widget _entryField(String title, {bool isPassword = false}) {
+    TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
     return Container(
       margin: EdgeInsets.symmetric(vertical: 10),
       child: Column(
@@ -27,11 +27,13 @@ class _LoginPageState extends State<LoginPage> {
             height: 05,
           ),
           TextField(
-              obscureText: isPassword,
-              decoration: InputDecoration(
-                  border: InputBorder.none,
-                  fillColor: Color(0xfff3f3f4),
-                  filled: true))
+            obscureText: isPassword,
+            style: style,
+            decoration: InputDecoration(
+                contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+                border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(40))),
+          )
         ],
       ),
     );
@@ -43,7 +45,7 @@ class _LoginPageState extends State<LoginPage> {
       padding: EdgeInsets.symmetric(vertical: 15),
       alignment: Alignment.center,
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(5)),
+          borderRadius: BorderRadius.circular(50),
           boxShadow: <BoxShadow>[
             BoxShadow(
                 color: Colors.white,
@@ -54,7 +56,7 @@ class _LoginPageState extends State<LoginPage> {
           gradient: LinearGradient(
               begin: Alignment.centerLeft,
               end: Alignment.centerRight,
-              colors: [Color(0xFF2766A9), Color(0xFF2766FF)])),
+              colors: [Color(0xFF2f7fcd), Color(0xFF47a6f7)])),
       child: Text('Login', style: TextStyle(fontSize: 20, color: Colors.white)),
     );
   }
@@ -94,7 +96,7 @@ class _LoginPageState extends State<LoginPage> {
 
   Widget _googleLogin() {
     return OutlineButton(
-      splashColor: Color(0xFF2766A9),
+      splashColor: Color(0xFF2f7fcd),
       onPressed: () {},
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
       highlightElevation: 0,
@@ -145,7 +147,7 @@ class _LoginPageState extends State<LoginPage> {
             Text(
               'Sign Up',
               style: TextStyle(
-                  color: Color(0xFF2766A9),
+                  color: Color(0xFF2f7fcd),
                   fontSize: 15,
                   fontWeight: FontWeight.w600),
             ),
@@ -161,7 +163,7 @@ class _LoginPageState extends State<LoginPage> {
       text: TextSpan(
         text: 'MilkApp',
         style: TextStyle(
-            color: Color(0xFF2766c1),
+            color: Color(0xFF2f7fcd),
             fontSize: 40,
             fontFamily: 'Langer',
             fontWeight: FontWeight.w600),
@@ -186,10 +188,6 @@ class _LoginPageState extends State<LoginPage> {
         height: height,
         child: Stack(
           children: <Widget>[
-            Positioned(
-                top: -height * .15,
-                right: -MediaQuery.of(context).size.width * .4,
-                child: BezierContainer()),
             Container(
               padding: EdgeInsets.symmetric(horizontal: 35),
               child: SingleChildScrollView(
@@ -197,7 +195,8 @@ class _LoginPageState extends State<LoginPage> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    SizedBox(height: height * .19),
+                    SizedBox(height: height * .25),
+                    Image(image: AssetImage("images/logo.png"), height: 80.0),
                     _title(),
                     SizedBox(height: 35),
                     _emailPasswordWidget(),
