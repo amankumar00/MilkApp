@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'LoginPage.dart';
 import 'Widget/bezierContainer.dart';
-//final signup page
+
 class SignUpPage extends StatefulWidget {
   static String id = '/SignUpPage';
   @override
@@ -9,7 +9,6 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
-
   Widget _entryField(String title, {bool isPassword = false}) {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 10),
@@ -100,7 +99,11 @@ class _SignUpPageState extends State<SignUpPage> {
       textAlign: TextAlign.center,
       text: TextSpan(
         text: 'MilkApp',
-        style: TextStyle(color: Color(0xFF2766A9), fontSize: 40,fontFamily: 'Langer',fontWeight: FontWeight.w600),
+        style: TextStyle(
+            color: Color(0xFF2766A9),
+            fontSize: 40,
+            fontFamily: 'Langer',
+            fontWeight: FontWeight.w600),
       ),
     );
   }
