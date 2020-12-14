@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'SignUpPage.dart';
 
 class LoginPage extends StatefulWidget {
-  static String id = '/LoginPage';
+  static String id = '/';
   @override
   _LoginPageState createState() => _LoginPageState();
 }
