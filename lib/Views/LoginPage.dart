@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'SignUpPage.dart';
+
 class LoginPage extends StatefulWidget {
-  static String id = '/';
+  static String id = '/LoginPage';
   @override
   _LoginPageState createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
-
   Widget _entryField(String title, {bool isPassword = false}) {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 10),
@@ -50,10 +50,7 @@ class _LoginPageState extends State<LoginPage> {
               begin: Alignment.centerLeft,
               end: Alignment.centerRight,
               colors: [Color(0xFF2766A9), Color(0xFF2766FF)])),
-      child: Text(
-        'Login',
-        style: TextStyle(fontSize: 20, color: Colors.white)
-      ),
+      child: Text('Login', style: TextStyle(fontSize: 20, color: Colors.white)),
     );
   }
 
@@ -158,7 +155,11 @@ class _LoginPageState extends State<LoginPage> {
       textAlign: TextAlign.center,
       text: TextSpan(
         text: 'MilkApp',
-        style: TextStyle(color: Color(0xFF2766A9), fontSize: 40,fontFamily: 'Gloria',fontWeight: FontWeight.w600),
+        style: TextStyle(
+            color: Color(0xFF2766A9),
+            fontSize: 40,
+            fontFamily: 'Gloria',
+            fontWeight: FontWeight.w600),
       ),
     );
   }
@@ -177,39 +178,39 @@ class _LoginPageState extends State<LoginPage> {
     final height = MediaQuery.of(context).size.height;
     return Scaffold(
         body: Container(
-          height: height,
-          child: Stack(
-            children: <Widget>[
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 20),
-                child: SingleChildScrollView(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      SizedBox(height: height * .2),
-                      _title(),
-                      SizedBox(height: 50),
-                      _emailPasswordWidget(),
-                      SizedBox(height: 20),
-                      _submitButton(),
-                      Container(
-                        padding: EdgeInsets.symmetric(vertical: 10),
-                        alignment: Alignment.centerRight,
-                        child: Text('Forgot Password ?',
-                            style: TextStyle(
-                                fontSize: 14, fontWeight: FontWeight.w500)),
-                      ),
-                      _divider(),
-                      _googleLogin(),
-                      SizedBox(height: height * .055),
-                      _createAccountLabel(),
-                    ],
+      height: height,
+      child: Stack(
+        children: <Widget>[
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  SizedBox(height: height * .2),
+                  _title(),
+                  SizedBox(height: 50),
+                  _emailPasswordWidget(),
+                  SizedBox(height: 20),
+                  _submitButton(),
+                  Container(
+                    padding: EdgeInsets.symmetric(vertical: 10),
+                    alignment: Alignment.centerRight,
+                    child: Text('Forgot Password ?',
+                        style: TextStyle(
+                            fontSize: 14, fontWeight: FontWeight.w500)),
                   ),
-                ),
+                  _divider(),
+                  _googleLogin(),
+                  SizedBox(height: height * .055),
+                  _createAccountLabel(),
+                ],
               ),
-            ],
+            ),
           ),
-        ));
+        ],
+      ),
+    ));
   }
 }

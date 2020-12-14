@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
-  static String id = '/s';
+  static String id = '/';
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -121,11 +121,10 @@ class GridViewItems extends StatelessWidget {
         color: Colors.white,
       ),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: EdgeInsets.only(top: 16, bottom: 5, right: 16, left: 16),
             child: Center(
               child: Image.asset(
                 imagePath,
@@ -135,48 +134,121 @@ class GridViewItems extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16),
-            child: Expanded(
-              child: Text(
-                'Amul',
-                style: TextStyle(fontFamily: 'Russo'),
-              ),
+            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 5),
+            child: Text(
+              'Amul',
+              style: TextStyle(fontFamily: 'Russo'),
             ),
           ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16),
-            child: Expanded(child: Text('1L')),
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16),
-            child: Expanded(
-              child: Text(
-                'Pasteurised',
-                style: TextStyle(
-                  fontFamily: 'Gloria',
-                ),
+          Container(
+            child: Padding(
+              padding: EdgeInsets.only(right: 16.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  BorderedInfoPill(
+                    InfoText: '1L',
+                  ),
+                  BorderedInfoPill(
+                    InfoText: 'Whole Milk',
+                  ),
+                ],
               ),
             ),
           ),
           Expanded(
-            child: Align(
-              alignment: Alignment.bottomLeft,
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16),
-                child: Expanded(
-                  child: Text(
-                    '₹70',
-                    style: TextStyle(
-                      fontFamily: 'Alfa',
-                      color: Colors.green,
-                      fontSize: 25,
+            child: Padding(
+              padding: EdgeInsets.only(
+                top: 30,
+                bottom: 20,
+              ),
+              child: Row(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 16),
+                    child: Row(
+                      children: [
+                        Text(
+                          '₹',
+                          style: TextStyle(
+                            fontSize: 15,
+                            fontFamily: 'Alfa',
+                            color: Colors.green,
+                          ),
+                        ),
+                        Text(
+                          '70',
+                          style: TextStyle(
+                            fontFamily: 'Alfa',
+                            color: Colors.green,
+                            fontSize: 25,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                ),
+                  Expanded(
+                    child: Padding(
+                      padding: EdgeInsets.only(right: 16.0),
+                      child: RawMaterialButton(
+                        child: Text(
+                          'ADD',
+                          style: (TextStyle(color: Colors.white)),
+                        ),
+                        onPressed: () {},
+                        fillColor: Color(0xFF2766A9),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(30),
+                          ),
+                        ),
+                        constraints: BoxConstraints.tightFor(
+                          width: 80,
+                          height: 30,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class BorderedInfoPill extends StatelessWidget {
+  BorderedInfoPill({this.InfoText});
+  final String InfoText;
+  @override
+  Widget build(BuildContext context) {
+    return ConstrainedBox(
+      constraints: BoxConstraints(
+        minWidth: 30,
+        maxWidth: 60,
+        minHeight: 10,
+        maxHeight: 20,
+      ),
+      child: FlatButton(
+        onPressed: () {},
+        padding: EdgeInsets.all(2),
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(
+              Radius.circular(30),
+            ),
+            side: BorderSide(
+              color: Colors.black,
+              width: 1,
+              style: BorderStyle.solid,
+            )),
+        child: Text(
+          InfoText,
+          style: TextStyle(
+            fontSize: 10,
+          ),
+        ),
       ),
     );
   }
