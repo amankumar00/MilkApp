@@ -224,29 +224,32 @@ class BorderedInfoPill extends StatelessWidget {
   final String InfoText;
   @override
   Widget build(BuildContext context) {
-    return ConstrainedBox(
-      constraints: BoxConstraints(
-        minWidth: 30,
-        maxWidth: 60,
-        minHeight: 10,
-        maxHeight: 20,
-      ),
-      child: FlatButton(
-        onPressed: () {},
-        padding: EdgeInsets.all(2),
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(
-              Radius.circular(30),
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 1.0),
+      child: ConstrainedBox(
+        constraints: BoxConstraints(
+          minWidth: 30,
+          maxWidth: 60,
+          minHeight: 10,
+          maxHeight: 20,
+        ),
+        child: FlatButton(
+          onPressed: () {},
+          padding: EdgeInsets.all(2),
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(
+                Radius.circular(30),
+              ),
+              side: BorderSide(
+                color: Colors.black,
+                width: 1,
+                style: BorderStyle.solid,
+              )),
+          child: Text(
+            InfoText,
+            style: TextStyle(
+              fontSize: 10,
             ),
-            side: BorderSide(
-              color: Colors.black,
-              width: 1,
-              style: BorderStyle.solid,
-            )),
-        child: Text(
-          InfoText,
-          style: TextStyle(
-            fontSize: 10,
           ),
         ),
       ),
