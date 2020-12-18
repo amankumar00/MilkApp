@@ -1,15 +1,48 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:milk/Networking.dart';
+import 'CartPage.dart';
 import 'authentication.dart';
 import 'LoginPage.dart';
+import 'dart:core';
 
 class HomePage extends StatefulWidget {
-  static String id = '/HomePage';
+  static String id = '/';
   @override
   _HomePageState createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
+  Networking networking = Networking();
+  var data;
+  String brandName;
+  String volume;
+  String desc;
+  int price;
+  List<GridViewItems> items = [];
+
+  void updateUI() async {
+    data = await networking.getData();
+    setState(() {
+      for (var u in data) {
+        GridViewItems gridViewItem = GridViewItems(
+          imagePath: u['imgURL'],
+          volume: u['volume'],
+          price: u['price'],
+          desc: u['desc'],
+          brandName: u['brand'],
+        );
+        items.add(gridViewItem);
+      }
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    updateUI();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -69,23 +102,7 @@ class _HomePageState extends State<HomePage> {
                 mainAxisSpacing: 10,
                 padding: EdgeInsets.all(10),
                 crossAxisCount: 2,
-                children: <Widget>[
-                  GridViewItems(
-                    imagePath: 'images/AmulMilk.png',
-                  ),
-                  GridViewItems(
-                    imagePath: 'images/AmulMilk.png',
-                  ),
-                  GridViewItems(
-                    imagePath: 'images/AmulMilk.png',
-                  ),
-                  GridViewItems(
-                    imagePath: 'images/AmulMilk.png',
-                  ),
-                  GridViewItems(
-                    imagePath: 'images/AmulMilk.png',
-                  ),
-                ],
+                children: items.toList(),
               ),
             ),
           ),
@@ -121,8 +138,19 @@ class SearchTextField extends StatelessWidget {
 }
 
 class GridViewItems extends StatelessWidget {
-  GridViewItems({this.imagePath});
+  GridViewItems(
+      {this.imagePath,
+      this.brandName,
+      this.volume,
+      this.desc,
+      this.price,
+      this.onBuild});
   final String imagePath;
+  final String brandName;
+  final String volume;
+  final String desc;
+  final int price;
+  final Function onBuild;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -138,7 +166,7 @@ class GridViewItems extends StatelessWidget {
           Padding(
             padding: EdgeInsets.only(top: 16, bottom: 5, right: 16, left: 16),
             child: Center(
-              child: Image.asset(
+              child: Image.network(
                 imagePath,
                 height: 120,
                 width: 120,
@@ -148,7 +176,7 @@ class GridViewItems extends StatelessWidget {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 16, vertical: 5),
             child: Text(
-              'Amul',
+              '$brandName',
               style: TextStyle(fontFamily: 'Russo'),
             ),
           ),
@@ -159,10 +187,10 @@ class GridViewItems extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   BorderedInfoPill(
-                    infoText: '1L',
+                    infoText: '$volume',
                   ),
                   BorderedInfoPill(
-                    infoText: 'Whole Milk',
+                    infoText: '$desc',
                   ),
                 ],
               ),
@@ -189,7 +217,7 @@ class GridViewItems extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          '70',
+                          '$price',
                           style: TextStyle(
                             fontFamily: 'Alfa',
                             color: Colors.green,
@@ -207,7 +235,20 @@ class GridViewItems extends StatelessWidget {
                           'ADD',
                           style: (TextStyle(color: Colors.white)),
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => CartPage(
+                                imagePath: imagePath,
+                                volume: volume,
+                                brandName: brandName,
+                                price: price,
+                                desc: desc,
+                              ),
+                            ),
+                          );
+                        },
                         fillColor: Color(0xFF2766A9),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.all(

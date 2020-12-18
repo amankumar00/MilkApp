@@ -17,6 +17,8 @@ dependencies:
   google_sign_in: ^4.5.3
   form_field_validator: ^1.0.1
   cloud_firestore: ^0.14.4
+  provider:
+  http:
 
 dev_dependencies:
   flutter_test:

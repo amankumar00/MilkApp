@@ -5,7 +5,7 @@ import 'authentication.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 
 class LoginPage extends StatefulWidget {
-  static String id = '/';
+  static String id = '/LoginPage';
   @override
   _LoginPageState createState() => _LoginPageState();
 }
@@ -62,7 +62,8 @@ class _LoginPageState extends State<LoginPage> {
                 decoration: InputDecoration(
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(40),
-                    ) ,labelText: "Password"),
+                    ),
+                    labelText: "Password"),
                 validator: MultiValidator([
                   RequiredValidator(errorText: "This Field Is Required."),
                   MinLengthValidator(6,
@@ -83,7 +84,8 @@ class _LoginPageState extends State<LoginPage> {
   Widget _submitButton() {
     return Container(
       child: RawMaterialButton(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
           onPressed: login,
           fillColor: Color(0xFF2f7fcd),
           child: Text('Login',

@@ -7,14 +7,14 @@ import 'Views/SignUpPage.dart';
 import 'Views/HomePage.dart';
 import 'package:firebase_core/firebase_core.dart';
 
-
-void main(){
-  WidgetsFlutterBinding.ensureInitialized(); Firebase.initializeApp();
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  Firebase.initializeApp();
   runApp(MaterialApp(debugShowCheckedModeBanner: false, home: MilkApp()));
 }
 
 class MilkApp extends StatelessWidget {
- // final Future<FirebaseApp> _initialization = Firebase.initializeApp();
+  // final Future<FirebaseApp> _initialization = Firebase.initializeApp();
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
