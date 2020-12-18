@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'LoginPage.dart';
-//final signup page 2;
-//color code 0xFF2f7fcd;
+import 'authentication.dart';
+import 'HomePage.dart';
+import 'package:form_field_validator/form_field_validator.dart';
+
 class SignUpPage extends StatefulWidget {
   static String id = '/SignUpPage';
   @override
@@ -9,57 +11,88 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
-  Widget _entryField(String title, {bool isPassword = false}) {
-    TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
+  String email;
+  String password;
+  GlobalKey<FormState> formkey = GlobalKey<FormState>();
+
+  void handleSignup() {
+    if (formkey.currentState.validate()) {
+      formkey.currentState.save();
+      signUp(email.trim(), password, context).then((value) {
+        if (value != null) {
+          Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => HomePage(),
+              ));
+        }
+      });
+    }
+  }
+
+  Widget _entryField() {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 10),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.all(6.0),
-            child: Text(
-              title,
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+      width: MediaQuery.of(context).size.width * 0.90,
+      child: Form(
+        key: formkey,
+        child: Column(
+          children: <Widget>[
+            TextFormField(
+              decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(40),
+                  ),
+                  labelText: "Email"),
+              validator: (_val) {
+                if (_val.isEmpty) {
+                  return "Can't be empty";
+                } else {
+                  return null;
+                }
+              },
+              onChanged: (val) {
+                email = val;
+              },
             ),
-          ),
-          SizedBox(
-            height: 05,
-          ),
-          TextField(
-            obscureText: isPassword,
-            style: style,
-            decoration: InputDecoration(
-                contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-                border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(40))),
-          )
-        ],
+            SizedBox(height: 20),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 15.0),
+              child: TextFormField(
+                obscureText: true,
+                decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(40),
+                    ),
+                    labelText: "Password"),
+                validator: MultiValidator([
+                  RequiredValidator(errorText: "This Field Is Required."),
+                  MinLengthValidator(6,
+                      errorText: "Minimum 6 Characters Required.")
+                ]),
+                onChanged: (val) {
+                  password = val;
+                },
+              ),
+            ),
+            _submitButton(),
+          ],
+        ),
       ),
     );
   }
 
   Widget _submitButton() {
     return Container(
-      width: MediaQuery.of(context).size.width,
-      padding: EdgeInsets.symmetric(vertical: 15),
-      alignment: Alignment.center,
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(50)),
-          boxShadow: <BoxShadow>[
-            BoxShadow(
-                color: Colors.grey.shade200,
-                offset: Offset(2, 4),
-                blurRadius: 5,
-                spreadRadius: 2)
-          ],
-          gradient: LinearGradient(
-              begin: Alignment.centerLeft,
-              end: Alignment.centerRight,
-              colors: [Color(0xFF2f7fcd), Color(0xFF47a6f7)])),
-      child: Text(
-        'Sign Up Now',
-        style: TextStyle(fontSize: 20, color: Colors.white),
+      child: RawMaterialButton(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
+        onPressed: handleSignup,
+        fillColor: Color(0xFF2f7fcd),
+        child: Text(
+          'Sign Up',
+          style: TextStyle(
+              fontSize: 20, color: Colors.white
+          ),
+        ),
       ),
     );
   }
@@ -97,6 +130,39 @@ class _SignUpPageState extends State<SignUpPage> {
     );
   }
 
+  Widget _divider() {
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: 10),
+      child: Row(
+        children: <Widget>[
+          SizedBox(
+            width: 20,
+          ),
+          Expanded(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10),
+              child: Divider(
+                thickness: 1,
+              ),
+            ),
+          ),
+          Text('or'),
+          Expanded(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10),
+              child: Divider(
+                thickness: 1,
+              ),
+            ),
+          ),
+          SizedBox(
+            width: 20,
+          ),
+        ],
+      ),
+    );
+  }
+
   Widget _title() {
     return RichText(
       textAlign: TextAlign.center,
@@ -111,20 +177,22 @@ class _SignUpPageState extends State<SignUpPage> {
     );
   }
 
-  Widget _emailPasswordWidget() {
-    return Column(
-      children: <Widget>[
-        _entryField("Username"),
-        _entryField("Email id"),
-        _entryField("Password", isPassword: true),
-      ],
-    );
-  }
-
   Widget _googleSign() {
     return OutlineButton(
       splashColor: Color(0xFF2f7fcd),
-      onPressed: () {},
+      onPressed: () {
+        signInWithGoogle().then((result) {
+          if (result != null) {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) {
+                  return HomePage();
+                },
+              ),
+            );
+          }
+        });
+      },
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
       highlightElevation: 0,
       borderSide: BorderSide(color: Colors.grey),
@@ -169,13 +237,13 @@ class _SignUpPageState extends State<SignUpPage> {
                     SizedBox(height: height * .25),
                     Image(image: AssetImage("images/logo.png"), height: 80.0),
                     _title(),
-                    _emailPasswordWidget(),
-                    SizedBox(
-                      height: 15,
-                    ),
-                    _submitButton(),
-                    SizedBox(height: height * .04),
+                    SizedBox(height: 35),
+                    _entryField(),
+                    SizedBox(height: 5),
+                    _divider(),
+                    SizedBox(height: 5),
                     _googleSign(),
+                    SizedBox(height: height * .01),
                     _loginAccountLabel(),
                   ],
                 ),

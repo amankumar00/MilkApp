@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'authentication.dart';
+import 'LoginPage.dart';
 
 class HomePage extends StatefulWidget {
   static String id = '/HomePage';
@@ -36,6 +38,16 @@ class _HomePageState extends State<HomePage> {
             ListTile(
               title: Text('item 3'),
               onTap: () {},
+            ),
+            IconButton(
+              icon: Icon(Icons.exit_to_app),
+              splashColor: Colors.transparent,
+              highlightColor: Colors.transparent,
+              onPressed: () => signOutUser().then((value) {
+                Navigator.of(context).pushAndRemoveUntil(
+                    MaterialPageRoute(builder: (context) => LoginPage()),
+                    (Route<dynamic> route) => false);
+              }),
             ),
           ],
         ),
@@ -147,10 +159,10 @@ class GridViewItems extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   BorderedInfoPill(
-                    InfoText: '1L',
+                    infoText: '1L',
                   ),
                   BorderedInfoPill(
-                    InfoText: 'Whole Milk',
+                    infoText: 'Whole Milk',
                   ),
                 ],
               ),
@@ -220,8 +232,8 @@ class GridViewItems extends StatelessWidget {
 }
 
 class BorderedInfoPill extends StatelessWidget {
-  BorderedInfoPill({this.InfoText});
-  final String InfoText;
+  BorderedInfoPill({this.infoText});
+  final String infoText;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -246,7 +258,7 @@ class BorderedInfoPill extends StatelessWidget {
                 style: BorderStyle.solid,
               )),
           child: Text(
-            InfoText,
+            infoText,
             style: TextStyle(
               fontSize: 10,
             ),

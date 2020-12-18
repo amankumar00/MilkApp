@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "135251700466",
+    "project_id": "milkapp-e98ff",
+    "storage_bucket": "milkapp-e98ff.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:135251700466:android:3c4243ab3c16fd671ebe6b",
+        "android_client_info": {
+          "package_name": "com.milkapp.aman"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "135251700466-b86dnhhcj68ptp86k9mu1oqh27rsn8sm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.milkapp.aman",
+            "certificate_hash": "8a566470206e904c0e92e1389247408abd2d4829"
+          }
+        },
+        {
+          "client_id": "135251700466-uh1n57acv5iqrn6681e450h3dj9vao1m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD3EKk_Qa4hgHpeu_abGK-TFymu1P2U0MU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "135251700466-uh1n57acv5iqrn6681e450h3dj9vao1m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
