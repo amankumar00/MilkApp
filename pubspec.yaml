@@ -38,6 +38,9 @@ flutter:
     - family: Alfa
       fonts:
         - asset: fonts/AlfaSlabOne-Regular.ttf
+    - family: Roboto
+      fonts:
+        - asset: fonts/Roboto-Regular.ttf
 
   assets:
     - images/
