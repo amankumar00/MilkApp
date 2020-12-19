@@ -187,7 +187,7 @@ class GridViewItems extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   BorderedInfoPill(
-                    infoText: '$volume',
+                    infoText: 'Packaged',
                   ),
                   BorderedInfoPill(
                     infoText: '$desc',
@@ -232,7 +232,7 @@ class GridViewItems extends StatelessWidget {
                       padding: EdgeInsets.only(right: 16.0),
                       child: RawMaterialButton(
                         child: Text(
-                          'ADD',
+                          'BUY',
                           style: (TextStyle(color: Colors.white)),
                         ),
                         onPressed: () {
@@ -275,6 +275,7 @@ class GridViewItems extends StatelessWidget {
 class BorderedInfoPill extends StatelessWidget {
   BorderedInfoPill({this.infoText});
   final String infoText;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -294,14 +295,16 @@ class BorderedInfoPill extends StatelessWidget {
                 Radius.circular(30),
               ),
               side: BorderSide(
-                color: Colors.black,
-                width: 1,
-                style: BorderStyle.solid,
-              )),
+                  color: (infoText == 'organic' ? Colors.green : Colors.black),
+                  width: (infoText == 'organic' ? 2.5 : 1),
+                  style: BorderStyle.solid)),
           child: Text(
-            infoText,
+            (infoText == 'organic' ? 'Organic' : infoText),
             style: TextStyle(
+              color: (infoText == 'organic' ? Colors.green : Colors.black),
               fontSize: 10,
+              fontWeight:
+                  (infoText == 'organic' ? FontWeight.bold : FontWeight.normal),
             ),
           ),
         ),
