@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:milk/Views/PayPage.dart';
 import 'Views/CartPage.dart';
-import 'Views/DeliveryTrackingPage.dart';
 import 'Views/LoginPage.dart';
-import 'Views/SubscriptionPage.dart';
 import 'Views/SignUpPage.dart';
 import 'Views/HomePage.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'Views/PayPage.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,11 +20,10 @@ class MilkApp extends StatelessWidget {
     return MaterialApp(
       routes: {
         CartPage.id: (context) => CartPage(),
-        DeliveryTrackingPage.id: (context) => DeliveryTrackingPage(),
         HomePage.id: (context) => HomePage(),
         LoginPage.id: (context) => LoginPage(),
         SignUpPage.id: (context) => SignUpPage(),
-        SubscriptionPage.id: (context) => SubscriptionPage(),
+        PayPage.id: (context) => PayPage(),
       },
       initialRoute: '/',
       theme: ThemeData(

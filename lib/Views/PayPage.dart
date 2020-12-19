@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
-import 'PaymentService.dart';
+import '../Services/PaymentService.dart';
 import 'package:progress_dialog/progress_dialog.dart';
 
 class PayPage extends StatefulWidget {
-  static String id = '/';
-  PayPage({Key key}) : super(key: key);
+  static String id = '/PayPage';
   @override
   _PayPageState createState() => _PayPageState();
 }
 
 class _PayPageState extends State<PayPage> {
   onItemPress(BuildContext context, int index) async {
-    switch(index) {
+    switch (index) {
       default:
         payViaNewCard(context);
     }
@@ -19,21 +18,16 @@ class _PayPageState extends State<PayPage> {
 
   payViaNewCard(BuildContext context) async {
     ProgressDialog dialog = new ProgressDialog(context);
-    dialog.style(
-        message: 'Please wait...'
-    );
+    dialog.style(message: 'Please wait...');
     await dialog.show();
-    var response = await StripeService.payWithNewCard(
-        amount: '1000',
-        currency: 'INR'
-    );
+    var response =
+        await StripeService.payWithNewCard(amount: '1000', currency: 'INR');
     await dialog.hide();
-    Scaffold.of(context).showSnackBar(
-        SnackBar(
-          content: Text(response.message),
-          duration: new Duration(milliseconds: response.success == true ? 1200 : 3000),
-        )
-    );
+    Scaffold.of(context).showSnackBar(SnackBar(
+      content: Text(response.message),
+      duration:
+          new Duration(milliseconds: response.success == true ? 1200 : 3000),
+    ));
   }
 
   @override
@@ -56,7 +50,7 @@ class _PayPageState extends State<PayPage> {
               Icon icon;
               Text text;
 
-              switch(index) {
+              switch (index) {
                 default:
                   icon = Icon(Icons.add_circle, color: theme.primaryColor);
                   text = Text('Pay via new card');
@@ -73,10 +67,9 @@ class _PayPageState extends State<PayPage> {
               );
             },
             separatorBuilder: (context, index) => Divider(
-              color: theme.primaryColor,
-            ),
-            itemCount: 1
-        ),
+                  color: theme.primaryColor,
+                ),
+            itemCount: 1),
       ),
     );
   }

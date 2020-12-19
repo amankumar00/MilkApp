@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:milk/Networking.dart';
+import 'file:///C:/Users/amank/OneDrive/Desktop/milk/MilkApp/lib/Services/Networking.dart';
 import 'CartPage.dart';
-import 'authentication.dart';
+import '../Services//authentication.dart';
 import 'LoginPage.dart';
 import 'dart:core';
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'LoginPage.dart';
-import 'authentication.dart';
+import '../Services//authentication.dart';
 import 'HomePage.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 
@@ -89,9 +89,7 @@ class _SignUpPageState extends State<SignUpPage> {
         fillColor: Color(0xFF2f7fcd),
         child: Text(
           'Sign Up',
-          style: TextStyle(
-              fontSize: 20, color: Colors.white
-          ),
+          style: TextStyle(fontSize: 20, color: Colors.white),
         ),
       ),
     );

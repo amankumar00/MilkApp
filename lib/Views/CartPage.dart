@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'PayPage.dart';
 
 class CartPage extends StatefulWidget {
   int quantity = 1;
@@ -61,7 +62,9 @@ class _CartPageState extends State<CartPage> {
                 child: RawMaterialButton(
                   elevation: 20,
                   fillColor: Color(0xFF2766A9),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushNamed(context, PayPage.id);
+                  },
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(40)),
                   constraints: BoxConstraints.tightFor(
