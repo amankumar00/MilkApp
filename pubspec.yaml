@@ -17,8 +17,10 @@ dependencies:
   google_sign_in: ^4.5.3
   form_field_validator: ^1.0.1
   cloud_firestore: ^0.14.4
-  provider:
-  http:
+  flutter_credit_card: ^0.1.3
+  stripe_payment: ^1.0.7
+  http: ^0.11.3+17
+  progress_dialog: ^1.2.2
 
 dev_dependencies:
   flutter_test:
