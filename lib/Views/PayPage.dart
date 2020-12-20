@@ -41,7 +41,10 @@ class _PayPageState extends State<PayPage> {
     ThemeData theme = Theme.of(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text('Payment Methods'),
+        title: Text(
+          'Payment Methods',
+          style: TextStyle(fontFamily: 'Roboto'),
+        ),
       ),
       body: Container(
         padding: EdgeInsets.all(20),
@@ -52,7 +55,7 @@ class _PayPageState extends State<PayPage> {
 
               switch (index) {
                 default:
-                  icon = Icon(Icons.add_circle, color: theme.primaryColor);
+                  icon = Icon(Icons.credit_card, color: theme.primaryColor);
                   text = Text('Pay via new card');
               }
 

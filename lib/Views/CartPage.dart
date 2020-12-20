@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'PayPage.dart';
 
 class CartPage extends StatefulWidget {
-  int quantity = 1;
   CartPage({
     this.imagePath,
     this.volume,
@@ -100,7 +99,7 @@ class CartItem extends StatefulWidget {
 
 class _CartItemState extends State<CartItem> {
   int itemQuantity = 1;
-  double voulume = 500;
+  double volume = 500;
 
   @override
   Widget build(BuildContext context) {
@@ -173,13 +172,13 @@ class _CartItemState extends State<CartItem> {
                     ),
                     Slider(
                         activeColor: Color(0xFF2766A9),
-                        value: voulume,
+                        value: volume,
                         min: 500,
                         max: 2000,
                         divisions: 3,
                         onChanged: (sliderValue) {
                           setState(() {
-                            voulume = sliderValue;
+                            volume = sliderValue;
                           });
                         }),
                     Align(
@@ -187,7 +186,7 @@ class _CartItemState extends State<CartItem> {
                         child: Padding(
                           padding: EdgeInsets.symmetric(horizontal: 30),
                           child: Text(
-                            '${voulume / 1000}L',
+                            '${volume / 1000}L',
                             style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.w600,
@@ -219,7 +218,7 @@ class _CartItemState extends State<CartItem> {
                     child: Padding(
                   padding: EdgeInsets.all(30),
                   child: Text(
-                    '₹${(itemQuantity * widget.price * (voulume / 1000)).toStringAsFixed(1)}',
+                    '₹${(itemQuantity * widget.price * (volume / 1000)).toStringAsFixed(1)}',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       color: Colors.green,

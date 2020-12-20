@@ -1,24 +1,31 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'file:///C:/Users/amank/OneDrive/Desktop/milk/MilkApp/lib/Services/Networking.dart';
+import 'package:flutter/widgets.dart';
+import '../Services/Networking.dart';
 import 'CartPage.dart';
-import '../Services//authentication.dart';
+import '../Services/authentication.dart';
 import 'LoginPage.dart';
 import 'dart:core';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class HomePage extends StatefulWidget {
-  static String id = '/';
+  static String id = '/HomePage';
   @override
   _HomePageState createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
+  User user = FirebaseAuth.instance.currentUser;
   Networking networking = Networking();
   var data;
   String brandName;
   String volume;
   String desc;
   int price;
+  String userName;
+  String photoURL;
+  String defaultUrl =
+      'https://thumbs.dreamstime.com/b/default-avatar-profile-icon-social-media-user-vector-default-avatar-profile-icon-social-media-user-vector-portrait-176194876.jpg';
   List<GridViewItems> items = [];
 
   void updateUI() async {
@@ -33,6 +40,8 @@ class _HomePageState extends State<HomePage> {
           brandName: u['brand'],
         );
         items.add(gridViewItem);
+        userName = user.displayName;
+        photoURL = user.photoURL;
       }
     });
   }
@@ -46,43 +55,75 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Drawer(
-        child: ListView(
-          children: <Widget>[
-            DrawerHeader(
-              child: Text(
-                'Menu',
-                style: TextStyle(
-                  color: Colors.white,
+      drawer: Container(
+        width: 250,
+        child: Drawer(
+          child: ListView(
+            children: <Widget>[
+              Container(
+                height: 100,
+                child: DrawerHeader(
+                  child: Container(
+                    child: Column(
+                      children: [
+                        Expanded(
+                          child: Align(
+                            alignment: Alignment.topLeft,
+                            child: Container(
+                              height: 50.0,
+                              width: 50,
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  image: NetworkImage(
+                                    photoURL != null
+                                        ? '${photoURL}'
+                                        : defaultUrl,
+                                  ),
+                                  fit: BoxFit.fill,
+                                ),
+                                shape: BoxShape.circle,
+                                border: Border.all(
+                                  color: Colors.white30,
+                                  width: 2,
+                                  style: BorderStyle.solid,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Text(
+                          userName != null
+                              ? '${userName.toString()}'
+                              : 'Welcome!!',
+                          style: TextStyle(
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  decoration: BoxDecoration(
+                    color: Color(0xFF2766A9),
+                  ),
                 ),
               ),
-              decoration: BoxDecoration(
-                color: Color(0xFF2766A9),
+              Expanded(
+                child: Align(
+                  alignment: Alignment.bottomRight,
+                  child: IconButton(
+                    icon: Icon(Icons.exit_to_app),
+                    splashColor: Colors.transparent,
+                    highlightColor: Colors.transparent,
+                    onPressed: () => signOutUser().then((value) {
+                      Navigator.of(context).pushAndRemoveUntil(
+                          MaterialPageRoute(builder: (context) => LoginPage()),
+                          (Route<dynamic> route) => false);
+                    }),
+                  ),
+                ),
               ),
-            ),
-            ListTile(
-              title: Text('item 1'),
-              onTap: () {},
-            ),
-            ListTile(
-              title: Text('item 2'),
-              onTap: () {},
-            ),
-            ListTile(
-              title: Text('item 3'),
-              onTap: () {},
-            ),
-            IconButton(
-              icon: Icon(Icons.exit_to_app),
-              splashColor: Colors.transparent,
-              highlightColor: Colors.transparent,
-              onPressed: () => signOutUser().then((value) {
-                Navigator.of(context).pushAndRemoveUntil(
-                    MaterialPageRoute(builder: (context) => LoginPage()),
-                    (Route<dynamic> route) => false);
-              }),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
       appBar: AppBar(
@@ -119,7 +160,7 @@ class SearchTextField extends StatelessWidget {
       padding: EdgeInsets.symmetric(vertical: 8, horizontal: 10),
       child: TextField(
         decoration: InputDecoration(
-            hintText: 'Search for Brands, Volume, Type of Milk Etc...',
+            hintText: 'Search for Brands, Type of Milk Etc...',
             filled: true,
             fillColor: Colors.white70,
             enabledBorder: OutlineInputBorder(
@@ -200,7 +241,6 @@ class GridViewItems extends StatelessWidget {
             child: Padding(
               padding: EdgeInsets.only(
                 top: 30,
-                bottom: 20,
               ),
               child: Row(
                 children: [

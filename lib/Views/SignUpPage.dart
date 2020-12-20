@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'LoginPage.dart';
-import '../Services//authentication.dart';
+import '../Services/authentication.dart';
 import 'HomePage.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 

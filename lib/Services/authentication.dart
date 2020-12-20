@@ -27,13 +27,15 @@ showErrDialog(BuildContext context, String err) {
 Future<String> signInWithGoogle() async {
   final GoogleSignInAccount googleSignInAccount = await gooleSignIn.signIn();
 
-  final GoogleSignInAuthentication googleSignInAuthentication = await googleSignInAccount.authentication;
+  final GoogleSignInAuthentication googleSignInAuthentication =
+      await googleSignInAccount.authentication;
 
   final AuthCredential credential = GoogleAuthProvider.credential(
-        idToken: googleSignInAuthentication.idToken,
-        accessToken: googleSignInAuthentication.accessToken);
+      idToken: googleSignInAuthentication.idToken,
+      accessToken: googleSignInAuthentication.accessToken);
 
-  final UserCredential authResult = await _auth.signInWithCredential(credential);
+  final UserCredential authResult =
+      await _auth.signInWithCredential(credential);
   final User user = authResult.user;
 
   if (user != null) {
@@ -51,10 +53,10 @@ Future<String> signInWithGoogle() async {
   return null;
 }
 
-Future<User> signin(
-    String email, String password, BuildContext context) async {
+Future<User> signin(String email, String password, BuildContext context) async {
   try {
-    final UserCredential authResult = await _auth.signInWithEmailAndPassword(email: email, password: email);
+    final UserCredential authResult =
+        await _auth.signInWithEmailAndPassword(email: email, password: email);
     final User user = authResult.user;
     return Future.value(user);
   } catch (e) {
@@ -83,10 +85,10 @@ Future<User> signin(
   }
 }
 
-Future<User> signUp(
-    String email, String password, BuildContext context) async {
+Future<User> signUp(String email, String password, BuildContext context) async {
   try {
-    final UserCredential authResult = await _auth.createUserWithEmailAndPassword(email: email, password: email);
+    final UserCredential authResult = await _auth
+        .createUserWithEmailAndPassword(email: email, password: email);
     final User user = authResult.user;
     return Future.value(user);
   } catch (error) {
