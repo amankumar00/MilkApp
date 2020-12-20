@@ -1,16 +1,15 @@
-# milk
+MilkMan App :- We Deliver Milk at your doorstep just tell when .
 
-A new Flutter application.
+The problem MilkMan App solves =>
 
-## Getting Started
+Milk is one of most essential daily need, so everybody has to go to the market early in the morning to purchase milk and some people used to purchase milk from milkmen.. in this case, customer can not customize milk like quantity-wise, every brand-wise like Amul, Gokul, etc.. and customer can't buy organic and fresh milk from the farmers. Customers can get products at market prices. So that problem will be solved using this web application.
 
-This project is a starting point for a Flutter application.
+It is a platform for selling milk of different brands through MILKAPP ( A Milk delivery app), which mainly focuses on delivering fresh milk with customizing features of quantity, brand, organic and nonorganic at the market price.
 
-A few resources to get you started if this is your first Flutter project:
+This application involves the selling of Milk through the MILKAPP as our solution, specially designed & created for delivering milk for people’s daily requirements.
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Technologies we have used :-
+1)Flutter SDK .
+2)Node.Js & Express.js .
+3)MongoDB & Firebase .
+4)Github , OAuth & Heroku .
