@@ -14,11 +14,11 @@
       },
       "oauth_client": [
         {
-          "client_id": "135251700466-b86dnhhcj68ptp86k9mu1oqh27rsn8sm.apps.googleusercontent.com",
+          "client_id": "135251700466-t12go28htr3175h0jk83b693isuie0ao.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.milkapp.aman",
-            "certificate_hash": "8a566470206e904c0e92e1389247408abd2d4829"
+            "certificate_hash": "182778de4364b7bfcf620364431bee0160efe3b5"
           }
         },
         {

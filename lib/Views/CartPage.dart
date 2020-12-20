@@ -22,6 +22,7 @@ class CartPage extends StatefulWidget {
 
 class _CartPageState extends State<CartPage> {
   @override
+  // ignore: must_call_super
   void initState() {
     items.add(CartItem(
       imgURL: widget.imagePath,
@@ -31,7 +32,6 @@ class _CartPageState extends State<CartPage> {
     ));
   }
 
-  @override
   List<CartItem> items = [];
   Widget build(BuildContext context) {
     return Scaffold(

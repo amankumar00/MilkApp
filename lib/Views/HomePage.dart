@@ -6,6 +6,7 @@ import 'CartPage.dart';
 import '../Services/authentication.dart';
 import 'LoginPage.dart';
 import 'dart:core';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class HomePage extends StatefulWidget {
   static String id = '/HomePage';
@@ -14,7 +15,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-//  User user = FirebaseAuth.instance.currentUser;
+  User user = FirebaseAuth.instance.currentUser;
   Networking networking = Networking();
   var data;
   String brandName;
@@ -39,8 +40,8 @@ class _HomePageState extends State<HomePage> {
           brandName: u['brand'],
         );
         items.add(gridViewItem);
-//        userName = user.displayName;
-//        photoURL = user.photoURL;
+        userName = user.displayName;
+        photoURL = user.photoURL;
       }
     });
   }
@@ -60,21 +61,23 @@ class _HomePageState extends State<HomePage> {
           child: ListView(
             children: <Widget>[
               Container(
-                height: 100,
+                height: 150,
                 child: DrawerHeader(
                   child: Container(
                     child: Column(
                       children: [
                         Expanded(
                           child: Align(
-                            alignment: Alignment.topLeft,
+                            alignment: Alignment.center,
                             child: Container(
                               height: 50.0,
                               width: 50,
                               decoration: BoxDecoration(
                                 image: DecorationImage(
                                   image: NetworkImage(
-                                    photoURL != null ? '$photoURL' : defaultUrl,
+                                    photoURL != null
+                                        ? '$photoURL'
+                                        : defaultUrl,
                                   ),
                                   fit: BoxFit.fill,
                                 ),
@@ -89,12 +92,13 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ),
                         Align(
-                          alignment: Alignment.bottomLeft,
+                          alignment: Alignment.bottomCenter,
                           child: Text(
                             userName != null
                                 ? '${userName.toString()}'
                                 : 'Welcome!!',
                             style: TextStyle(
+                              fontSize: 18,
                               color: Colors.white,
                             ),
                           ),
@@ -114,16 +118,17 @@ class _HomePageState extends State<HomePage> {
                   child: FlatButton(
                     child: Row(
                       children: [
-                        Text('LogOut:'),
-                        Icon(Icons.power_settings_new),
+                        Text('LogOut :',style: TextStyle(fontSize: 20)),
+                        SizedBox(width: 18,),
+                        Icon(Icons.logout,color: Color(0xFF2766A9),),
                       ],
                     ),
                     splashColor: Colors.transparent,
                     highlightColor: Colors.transparent,
                     onPressed: () => signOutUser().then((value) {
                       Navigator.of(context).pushAndRemoveUntil(
-                          MaterialPageRoute(builder: (context) => LoginPage()),
-                          (Route<dynamic> route) => false);
+                          MaterialPageRoute(builder: (context) => new LoginPage()),
+                              (Route<dynamic> route) => false);
                     }),
                   ),
                 ),
@@ -176,8 +181,8 @@ class SearchTextField extends StatelessWidget {
             ),
             focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.all(
-              Radius.circular(30.0),
-            ))),
+                  Radius.circular(30.0),
+                ))),
         onChanged: (value) {},
       ),
     );
@@ -187,11 +192,11 @@ class SearchTextField extends StatelessWidget {
 class GridViewItems extends StatelessWidget {
   GridViewItems(
       {this.imagePath,
-      this.brandName,
-      this.volume,
-      this.desc,
-      this.price,
-      this.onBuild});
+        this.brandName,
+        this.volume,
+        this.desc,
+        this.price,
+        this.onBuild});
   final String imagePath;
   final String brandName;
   final String volume;
@@ -350,7 +355,7 @@ class BorderedInfoPill extends StatelessWidget {
               color: (infoText == 'organic' ? Colors.green : Colors.black),
               fontSize: 10,
               fontWeight:
-                  (infoText == 'organic' ? FontWeight.bold : FontWeight.normal),
+              (infoText == 'organic' ? FontWeight.bold : FontWeight.normal),
             ),
           ),
         ),
@@ -358,3 +363,4 @@ class BorderedInfoPill extends StatelessWidget {
     );
   }
 }
+
