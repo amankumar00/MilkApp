@@ -9,13 +9,13 @@ import 'dart:core';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class HomePage extends StatefulWidget {
-  static String id = '/HomePage';
+  static String id = '/';
   @override
   _HomePageState createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
-  User user = FirebaseAuth.instance.currentUser;
+//  User user = FirebaseAuth.instance.currentUser;
   Networking networking = Networking();
   var data;
   String brandName;
@@ -40,8 +40,8 @@ class _HomePageState extends State<HomePage> {
           brandName: u['brand'],
         );
         items.add(gridViewItem);
-        userName = user.displayName;
-        photoURL = user.photoURL;
+//        userName = user.displayName;
+//        photoURL = user.photoURL;
       }
     });
   }
@@ -91,12 +91,15 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ),
                         ),
-                        Text(
-                          userName != null
-                              ? '${userName.toString()}'
-                              : 'Welcome!!',
-                          style: TextStyle(
-                            color: Colors.white,
+                        Align(
+                          alignment: Alignment.bottomLeft,
+                          child: Text(
+                            userName != null
+                                ? '${userName.toString()}'
+                                : 'Welcome!!',
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
                           ),
                         ),
                       ],
@@ -107,11 +110,17 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
               ),
-              Expanded(
+              Container(
+                height: 550,
                 child: Align(
                   alignment: Alignment.bottomRight,
-                  child: IconButton(
-                    icon: Icon(Icons.exit_to_app),
+                  child: FlatButton(
+                    child: Row(
+                      children: [
+                        Text('LogOut:'),
+                        Icon(Icons.power_settings_new),
+                      ],
+                    ),
                     splashColor: Colors.transparent,
                     highlightColor: Colors.transparent,
                     onPressed: () => signOutUser().then((value) {

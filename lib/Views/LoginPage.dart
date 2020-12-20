@@ -5,7 +5,7 @@ import '../Services//authentication.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 
 class LoginPage extends StatefulWidget {
-  static String id = '/';
+  static String id = '/LoginPage';
   @override
   _LoginPageState createState() => _LoginPageState();
 }
