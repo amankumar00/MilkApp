@@ -1,0 +1,3 @@
+[submodule "productApi"]
+	path = productApi
+	url = https://github.com/aknrg77/productApi.git
