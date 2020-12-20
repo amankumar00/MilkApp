@@ -6,10 +6,9 @@ import 'CartPage.dart';
 import '../Services/authentication.dart';
 import 'LoginPage.dart';
 import 'dart:core';
-import 'package:firebase_auth/firebase_auth.dart';
 
 class HomePage extends StatefulWidget {
-  static String id = '/';
+  static String id = '/HomePage';
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -75,9 +74,7 @@ class _HomePageState extends State<HomePage> {
                               decoration: BoxDecoration(
                                 image: DecorationImage(
                                   image: NetworkImage(
-                                    photoURL != null
-                                        ? '${photoURL}'
-                                        : defaultUrl,
+                                    photoURL != null ? '$photoURL' : defaultUrl,
                                   ),
                                   fit: BoxFit.fill,
                                 ),

@@ -132,7 +132,6 @@ class _CartItemState extends State<CartItem> {
                       if (itemQuantity > 1) {
                         itemQuantity--;
                       }
-                      ;
                     });
                   },
                 ),
