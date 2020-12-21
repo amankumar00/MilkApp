@@ -8,8 +8,8 @@ It is a platform for selling milk of different brands through MILKAPP ( A Milk d
 
 This application involves the selling of Milk through the MILKAPP as our solution, specially designed & created for delivering milk for people’s daily requirements.
 
-Technologies we have used :-
-1)Flutter SDK .
-2)Node.Js & Express.js .
-3)MongoDB & Firebase .
-4)Github , OAuth & Heroku .
+Technologies we have used :- <br/>
+1)Flutter SDK . <br/>
+2)Node.Js & Express.js .<br/>
+3)MongoDB & Firebase .<br/>
+4)Github , OAuth & Heroku .<br/>
