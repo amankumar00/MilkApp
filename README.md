@@ -16,7 +16,7 @@ Technologies we have used :- <br/>
 * Github , OAuth & Heroku .<br/>
 
 
-##Contributers
+##Contributers <br />
 [![](https://github.com/aknrg77.png?size=50)](https://github.com/aknrg77) <br />
 [![](https://github.com/asrgabreo.png?size=50)](https://github.com/asrgabreo)
 
