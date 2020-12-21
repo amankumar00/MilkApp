@@ -17,6 +17,7 @@ Technologies we have used :- <br/>
 
 
 ##Contributers
-[![](https://github.com/aknrg77.png?size=50)](https://github.com/aknrg77)[![](https://github.com/asrgabreo.png?size=50)](https://github.com/asrgabreo)[![]
+[![](https://github.com/aknrg77.png?size=50)](https://github.com/aknrg77) <br />
+[![](https://github.com/asrgabreo.png?size=50)](https://github.com/asrgabreo)
 
 
